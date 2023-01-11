@@ -1,51 +1,23 @@
-
-
-//Part 1
-function getRandomElement(list){
-  return list[Math.floor((Math.random()*list.length))];
+// bai 1
+function getRandomElement(arr) {
+    let i = arr.length * Math.random();
+    // console.log(parseInt(i, 10));
+    return arr[parseInt(i, 10)];
 }
-getRandomElement([3, 7, 9, 11]);
+console.log(getRandomElement([1, 2, 3, 4]));
 
-// Part 2
-function getCountElement(lists, n){
-  let visited = Array.from({length: n}, (_, i) => false);
-         
-    for (let i = 0; i < n; i++) {
-
-        if (visited[i] == true)
-            continue;  
-        let count = 1;
-        for (let j = i + 1; j < n; j++) {
-            if (list[i] == list[j]) {
-                visited[j] = true;
-                count++;
-            }
-        }
-           document.write(list[i] + " :" + count + "<br/>");
+//bai2
+function getCountElement(arr) {
+    let obj = {};
+    for (let i = 0; i < arr.length; i++) {
+        let temp = arr[i];
+        obj["" + temp] = 0;
     }
-}
-let lists = (["one", "two", "three", "one", "one", "three"]);
-let n = list.length;
-getCountElement(lists, n);
-
-//Part 3
-$(document).ready(function() {
- 
-  $(".owl-carousel").owlCarousel({
- 
-      autoPlay: 3000,
-      items : 4,
-      itemsDesktop : [1199,3],
-      itemsDesktopSmall : [979,3],
-      center: true,
-      nav:true,
-      loop:true,
-      responsive: {
-        600: {
-          items: 4
+    for (let variable in obj) {
+        for (let i = 0; i < arr.length; i++) {
+            if (variable == arr[i]) obj["" + variable]++;
         }
-      }
-  });
-});
-
-async function()
+    }
+    return obj;
+}
+console.log(getCountElement(["one", "one", "two", "two", "three", "one", "four"]));
